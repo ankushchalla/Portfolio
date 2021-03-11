@@ -1,0 +1,39 @@
+.load-fastest {
+    animation: fadeIn .5s ease 1;
+    animation-fill-mode: forwards;
+}
+
+.load-fast {
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation: fadeIn 1s ease 1;
+    animation-fill-mode: forwards;
+}
+
+.load-slow {
+    animation: fadeIn 1s ease .5s 1;
+    animation-fill-mode: forwards;
+}
+
+.fade-out {
+    transition: opacity 5s;
+}
+
+@keyframes fadeIn {
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeOut {
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
