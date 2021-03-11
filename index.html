@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark load-fast">
         <div class="container-fluid">
             <a class="navbar-brand" href="./index.html" id="link"><strong>Ankush Challa</strong></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -31,7 +31,7 @@
             </button>
         </div>
     </nav>
-    <div class="container">
+    <div class="container load-slow">
         <div class="row mt-5 d-flex justify-content-center">
             <div class="nav mb-3 d-flex flex-column">
                 <a href="./projects.html" id="link" class="mb-3">
@@ -54,10 +54,17 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
-        window.addEventListener("load", () => {
-            document.querySelector(".navbar").classList.add("load-fast");
-            document.querySelector(".container").classList.add("load-slow");
+        $(document).ready(function() {
+            $(".navbar").css("opacity", "1");
+            $(".container").css("opacity", "1");
         });
+
+        $("a").click(function(event) {
+            event.preventDefault();
+            $(".container").addClass("load-fastest").removeClass("load-slow");
+            $(".container").css("opacity", "0");
+            window.location.href = $(this).attr("href");
+        })
     </script>
 </body>
 
