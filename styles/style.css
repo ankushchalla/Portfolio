@@ -61,7 +61,11 @@ p {
 
 .profile {
     border: 3px solid white;
-    height: 25vw;
+    height: 20vw;
+}
+
+#skills {
+    text-decoration: underline;
 }
 
 @media only screen and (max-width: 800px) {
