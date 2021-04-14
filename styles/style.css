@@ -68,6 +68,11 @@ p {
     text-decoration: underline;
 }
 
+p > span {
+    font-family: 'Zilla Slab Highlight', cursive;
+    font-size: x-large;
+}
+
 @media only screen and (max-width: 800px) {
     img {
         display: none;
