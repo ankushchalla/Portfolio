@@ -44,6 +44,13 @@ a, a:hover {
     height: 300px;
 }
 
+.only-foods {
+    border: 3px solid white;
+    object-fit: cover;
+    /* width: 70%; */
+    height: 550px;
+}
+
 p {
     font-size: large;
 }
