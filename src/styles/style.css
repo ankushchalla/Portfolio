@@ -20,8 +20,10 @@ body
 }
 
 .header {
-    border: 1px solid white;
-    font-size: 300px;
+    /* border: 1px solid white; */
+    font-size: 200px;
     color: black;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
 }
 
