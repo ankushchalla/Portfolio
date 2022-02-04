@@ -7,6 +7,7 @@ module.exports = {
     entry: path.resolve(__dirname, '../src/script.js'),
     output:
     {
+        hashFunction: 'xxhash64',
         filename: 'bundle.[contenthash].js',
         path: path.resolve(__dirname, '../dist')
     },
@@ -22,6 +23,10 @@ module.exports = {
             template: path.resolve(__dirname, '../src/index.html'),
             minify: true
         }),
+        new HtmlWebpackPlugin({
+            filename: 'food.html',
+            template: path.resolve(__dirname, '../src/food.html'),
+        }),
         new MiniCSSExtractPlugin()
     ],
     module:
@@ -31,7 +36,10 @@ module.exports = {
             // HTML
             {
                 test: /\.(html)$/,
-                use: ['html-loader']
+                use:
+                [
+                    'html-loader'
+                ]
             },
 
             // JS
@@ -57,31 +65,31 @@ module.exports = {
             // Images
             {
                 test: /\.(jpg|png|gif|svg)$/,
-                use:
-                [
-                    {
-                        loader: 'file-loader',
-                        options:
-                        {
-                            outputPath: 'assets/images/'
-                        }
-                    }
-                ]
+                type: 'asset/resource',
+                generator:
+                {
+                    filename: 'assets/images/[hash][ext]'
+                }
             },
 
             // Fonts
             {
                 test: /\.(ttf|eot|woff|woff2)$/,
-                use:
-                [
-                    {
-                        loader: 'file-loader',
-                        options:
-                        {
-                            outputPath: 'assets/fonts/'
-                        }
-                    }
-                ]
+                type: 'asset/resource',
+                generator:
+                {
+                    filename: 'assets/fonts/[hash][ext]'
+                }
+            },
+
+            // Shaders
+            {
+                test: /\.(glsl|vs|fs|vert|frag)$/,
+                type: 'asset/source',
+                generator:
+                {
+                    filename: 'assets/images/[hash][ext]'
+                }
             }
         ]
     }
