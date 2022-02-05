@@ -15,7 +15,7 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
-const env = 'prod'
+const env = 'dev'
 
 /**
  * Water
@@ -31,8 +31,13 @@ let debugObject = {
     surfaceColor: '#0571ff'
 }
 
+const lightColors = {
+    depthColor: '#2d82d2',
+    surfaceColor: '#ffe0ee'
+}
+
 debugObject = {
-    surfaceColor: '#ff8585', 
+    surfaceColor: '#ff8585',
     depthColor: '#6b0002'
 }
 
@@ -51,14 +56,14 @@ let waterMaterial = new THREE.ShaderMaterial({
         uSmallWavesElevation: { value: 0.15 },
         uSmallWavesFrequency: { value: 3 },
         uSmallWavesSpeed: { value: 0.2 },
-        uSmallWavesIteration: { value: 4 },
+        uSmallWavesIteration: { value: 3 },
 
-        uDepthColor: { value: new THREE.Color(debugObject.depthColor) },
-        uSurfaceColor: { value: new THREE.Color(debugObject.surfaceColor) },
+        uDepthColor: { value: new THREE.Color(lightColors.depthColor) },
+        uSurfaceColor: { value: new THREE.Color(lightColors.surfaceColor) },
         // previously .25
         uColorOffset: { value: 0.15 },
         uColorMultiplier: { value: 1.826 },
-        uColorDarkener: { value: 0.0 },
+        uColorDarkener: { value: 0.2 },
         uColorDarkenerLimit: { value: 1.0 }
     }
 })
@@ -113,34 +118,15 @@ window.addEventListener('resize', () => {
 })
 
 
-let positionY = 0
-window.addEventListener('scroll', e => {
-    let darkenerValue = waterMaterial.uniforms.uColorDarkener.value
-    let darkenerLimit = waterMaterial.uniforms.uColorDarkenerLimit
-    if (window.scrollY > positionY) {
-        darkenerValue += .01
-        positionY = window.scrollY
-    } else {
-        darkenerValue -= .01
-        positionY = window.scrollY
-    }
-    if (darkenerValue < 0) darkenerValue = 0
-    if (darkenerValue > darkenerLimit) darkenerValue = darkenerLimit
-    if (window.scrollY < 100) darkenerValue = 0
-    waterMaterial.uniforms.uColorDarkener.value = darkenerValue
-})
 
 /**
  * Camera
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
-if (env === 'test') {
-    camera.position.set(3, 3, 3)
-} else {
-    camera.position.set(0, 2, 0)
-    camera.rotation.x = - Math.PI * .5
-}
+camera.position.set(0, 2, 0)
+camera.rotation.x = - Math.PI * .5
+
 
 scene.add(camera)
 
@@ -159,7 +145,7 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-renderer.setClearColor(new THREE.Color('#0a0000'))
+renderer.setClearColor(new THREE.Color('#105494'))
 
 /**
  * Animate

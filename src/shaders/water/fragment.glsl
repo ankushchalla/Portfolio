@@ -8,7 +8,7 @@ uniform float uColorDarkenerLimit;
 varying float vElevation;
 
 void main() {
-    float mixStrength = ((vElevation + uColorOffset) * uColorMultiplier) - .2;
+    float mixStrength = ((vElevation + uColorOffset) * uColorMultiplier) - uColorDarkener;
     vec3 color = mix(uDepthColor, uSurfaceColor, mixStrength);
     
     gl_FragColor = vec4(color, 1.0); // rgba
