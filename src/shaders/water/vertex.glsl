@@ -7,6 +7,7 @@ uniform float uSmallWavesElevation;
 uniform float uSmallWavesFrequency;
 uniform float uSmallWavesSpeed;
 uniform float uSmallWavesIteration;
+uniform float uTransitioner;
 
 varying float vElevation;
 
@@ -107,7 +108,7 @@ void main() {
     for (float i = 1.0; i <= uSmallWavesIteration; i++) {
         elevation -= abs(cnoise(vec3(modelPosition.xz * uSmallWavesFrequency * i, uTime * uSmallWavesSpeed)) * uSmallWavesElevation / i);
     }
-                      
+ 
     modelPosition.y += elevation;
     
     vec4 viewPosition = viewMatrix * modelPosition;

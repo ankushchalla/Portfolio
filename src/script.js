@@ -12,6 +12,9 @@ import waterFragmentShader from './shaders/water/fragment.glsl'
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
+// Landing page
+const landingPage = document.querySelector('#landing-page')
+
 // Scene
 const scene = new THREE.Scene()
 
@@ -64,7 +67,9 @@ let waterMaterial = new THREE.ShaderMaterial({
         uColorOffset: { value: 0.15 },
         uColorMultiplier: { value: 1.826 },
         uColorDarkener: { value: 0.2 },
-        uColorDarkenerLimit: { value: 1.0 }
+        uColorDarkenerLimit: { value: 1.0 }, 
+
+        uTransitioner: { value: 0 }
     }
 })
 
@@ -130,6 +135,20 @@ camera.rotation.x = - Math.PI * .5
 
 scene.add(camera)
 
+/**
+ * Click handlers
+ */
+let transitionToPage = false
+const projectsButton = document.querySelector('#projects')
+let newPage = ''
+projectsButton.addEventListener('click', function(e) {
+    e.preventDefault()
+    console.log(this.href);
+    landingPage.classList.add('fade')
+    transitionToPage = true
+    newPage = this.href
+})
+
 // Controls
 let controls = null
 if (env === 'test') {
@@ -145,15 +164,24 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-renderer.setClearColor(new THREE.Color('#105494'))
+renderer.setClearColor(new THREE.Color('#0054c4'))
 
 /**
  * Animate
  */
 let clock = new THREE.Clock()
-
+let decrement = .01
 const tick = () => {
     const elapsedTime = clock.getElapsedTime()
+
+    if (transitionToPage) {
+        waterMaterial.uniforms.uColorMultiplier.value -= decrement
+        if (waterMaterial.uniforms.uColorMultiplier.value < 0){
+            decrement = 0
+            window.location.href = newPage
+        }
+
+    }
 
     // Update water
     waterMaterial.uniforms.uTime.value = elapsedTime
