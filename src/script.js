@@ -67,7 +67,7 @@ let waterMaterial = new THREE.ShaderMaterial({
         uColorOffset: { value: 0.15 },
         uColorMultiplier: { value: 1.826 },
         uColorDarkener: { value: 0.2 },
-        uColorDarkenerLimit: { value: 1.0 }, 
+        uColorDarkenerLimit: { value: 1.0 },
 
         uTransitioner: { value: 0 }
     }
@@ -140,8 +140,8 @@ scene.add(camera)
  */
 let transitionToPage = false
 const projectsButton = document.querySelector('#projects')
-let newPage = ''
-projectsButton.addEventListener('click', function(e) {
+let newPage = null
+projectsButton.addEventListener('click', function (e) {
     e.preventDefault()
     console.log(this.href);
     landingPage.classList.add('fade')
@@ -176,9 +176,10 @@ const tick = () => {
 
     if (transitionToPage) {
         waterMaterial.uniforms.uColorMultiplier.value -= decrement
-        if (waterMaterial.uniforms.uColorMultiplier.value < 0){
+        if (waterMaterial.uniforms.uColorMultiplier.value < 0) {
             decrement = 0
-            window.location.href = newPage
+            if (newPage) window.location.href = newPage
+            return
         }
 
     }
