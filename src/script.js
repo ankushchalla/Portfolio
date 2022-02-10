@@ -178,8 +178,6 @@ const tick = () => {
         waterMaterial.uniforms.uColorMultiplier.value -= decrement
         if (waterMaterial.uniforms.uColorMultiplier.value < 0) {
             decrement = 0
-            if (newPage) window.location.href = newPage
-            return
         }
 
     }
@@ -194,7 +192,7 @@ const tick = () => {
     renderer.render(scene, camera)
 
     // Call tick again on the next frame
-    window.requestAnimationFrame(tick)
+    if (decrement != 0) window.requestAnimationFrame(tick)
+    else window.location.href = newPage
 }
-
 tick()
