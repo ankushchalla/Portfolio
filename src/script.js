@@ -195,6 +195,10 @@ const tick = () => {
     else window.location.href = newPage
 }
 
+window.addEventListener('hashchange', event => {
+    console.log('calling hash change');
+    landingPage.style.opacity = 1
+})
 window.addEventListener('load', event => {
     landingPage.style.opacity = 1
 })
