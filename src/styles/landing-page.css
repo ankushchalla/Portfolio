@@ -55,6 +55,10 @@ a.nav-item:hover {
     border-bottom: 2px solid rgba(255, 255, 255, 1);
 }
 
-.fade {
+.fade-out {
     opacity: 0;
+}
+
+.fade-in {
+    opacity: 1;
 }

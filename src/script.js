@@ -12,9 +12,6 @@ import waterFragmentShader from './shaders/water/fragment.glsl'
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
-// Landing page
-const landingPage = document.querySelector('#landing-page')
-
 // Scene
 const scene = new THREE.Scene()
 
@@ -138,13 +135,15 @@ scene.add(camera)
 /**
  * Click handlers
  */
+// Landing page
+const landingPage = document.querySelector('#landing-page')
 let transitionToPage = false
 const projectsButton = document.querySelector('#projects')
 let newPage = null
 projectsButton.addEventListener('click', function (e) {
     e.preventDefault()
     console.log(this.href);
-    landingPage.classList.add('fade')
+    landingPage.classList.add('fade-out')
     transitionToPage = true
     newPage = this.href
 })
@@ -195,4 +194,22 @@ const tick = () => {
     if (decrement != 0) window.requestAnimationFrame(tick)
     else window.location.href = newPage
 }
-tick()
+
+function onLoad() {
+    // Reset page.
+    const classList = landingPage.classList
+    if (classList.contains('fade-out')) {
+        classList.remove('fade-out')
+        classList.add('fade-in')
+    }
+    decrement = .01
+    waterMaterial.uniforms.uColorMultiplier.value = 1.826
+}
+
+function main() {
+    onLoad()
+    tick()
+}
+
+main()
+
