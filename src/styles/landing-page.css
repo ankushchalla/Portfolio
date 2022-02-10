@@ -27,6 +27,7 @@ body
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    opacity: 0;
     transition: opacity 300ms;
 }
 
@@ -53,12 +54,4 @@ a.nav-item {
 
 a.nav-item:hover {
     border-bottom: 2px solid rgba(255, 255, 255, 1);
-}
-
-.fade-out {
-    opacity: 0;
-}
-
-.fade-in {
-    opacity: 1;
 }

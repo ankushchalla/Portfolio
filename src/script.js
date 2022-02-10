@@ -133,7 +133,7 @@ camera.rotation.x = - Math.PI * .5
 scene.add(camera)
 
 /**
- * Click handlers
+ * Link click handlers
  */
 // Landing page
 const landingPage = document.querySelector('#landing-page')
@@ -143,7 +143,7 @@ let newPage = null
 projectsButton.addEventListener('click', function (e) {
     e.preventDefault()
     console.log(this.href);
-    landingPage.classList.add('fade-out')
+    landingPage.style.opacity = 0
     transitionToPage = true
     newPage = this.href
 })
@@ -195,21 +195,9 @@ const tick = () => {
     else window.location.href = newPage
 }
 
-function onLoad() {
-    // Reset page.
-    const classList = landingPage.classList
-    if (classList.contains('fade-out')) {
-        classList.remove('fade-out')
-        classList.add('fade-in')
-    }
-    decrement = .01
-    waterMaterial.uniforms.uColorMultiplier.value = 1.826
-}
+window.addEventListener('load', event => {
+    landingPage.style.opacity = 1
+})
 
-function main() {
-    onLoad()
-    tick()
-}
-
-main()
+tick()
 
