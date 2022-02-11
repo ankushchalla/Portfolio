@@ -195,9 +195,10 @@ const tick = () => {
     else window.location.href = newPage
 }
 
-window.addEventListener('hashchange', event => {
-    console.log('calling hash change');
-    landingPage.style.opacity = 1
+window.addEventListener('pageshow', event => {
+    // If the webpage is loading from a cache (i.e. the user clicks the back button)
+    // Reload the page to remove cache.
+    if (event.persisted) window.location.reload()
 })
 window.addEventListener('load', event => {
     landingPage.style.opacity = 1
