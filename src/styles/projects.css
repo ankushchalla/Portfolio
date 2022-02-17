@@ -5,20 +5,21 @@
 }
 
 body {
-    background-color: #0054c4;
+    background-color: #036fcc;
     font-family: 'Roboto Mono', monospace;
     color: #dfdfef;
 }
 
 .header {
+    margin: 10px;
     display: flex;
     justify-content: space-between;
 }
 
 #page-title {
+    margin-left: 30px;
     font-weight: 200;
-    font-size: 7vw;
-    /* border: 1px solid white; */
+    font-size: 50px;
     line-height: 1.1;
 }
 
@@ -44,5 +45,37 @@ a.nav-item:hover {
     text-decoration-color: rgba(255, 255, 255, 1);
 }
 
+#projects {
+    position: relative;
+    margin: 40px;
+
+}
+
+.border {
+    width: fit-content;
+    border-top: 5px solid #dfdfef;
+    width: 100%;
+}
+
+.project-title {
+    position: relative;
+    font-size: 7vw;
+    padding: 7px 0px;
+    transition: color 300ms;
+
+}
+
+.project-title:hover {
+    color: rgba(5, 5, 41, 0.6);
+    cursor: pointer;
+    z-index: 3;
+}
+
+.cursor-image {
+    position: absolute;
+    transition: left 300ms ease-out, top 300ms ease-out;
+    width: 45vw;
+    z-index: 2;
+}
 
 
