@@ -142,7 +142,6 @@ const projectsButton = document.querySelector('#projects')
 let newPage = null
 projectsButton.addEventListener('click', function (e) {
     e.preventDefault()
-    console.log(this.href);
     landingPage.style.opacity = 0
     transitionToPage = true
     newPage = this.href
