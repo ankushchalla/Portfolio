@@ -8,6 +8,7 @@ body {
     background-color: #036fcc;
     font-family: 'Roboto Mono', monospace;
     color: #dfdfef;
+    overflow-x: hidden;
 }
 
 .header {

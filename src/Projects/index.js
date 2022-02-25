@@ -13,19 +13,35 @@ const offsetY = 100
 document.body.prepend(cursorImage)
 
 const showScreenshot = true
+let hiddenImage = null
 
 
 const projects = document.querySelector('#projects')
 projects.addEventListener('click', event => {
     const projectName = event.target.id
-    const projectDetailsNode = document.querySelector(`#${projectName}-details`)
-    if (!projectDetailsNode.classList.contains('active')) {
-        projectDetailsNode.classList.add('active')
-        
-        projectDetailsNode.classList.add('visible')
-        
+
+    // Open information section for clicked project. Close information section for other projects. 
+    for (const screenshot in screenshots) {
+        if (screenshot === projectName) {
+            const targetNode = document.querySelector(`#${projectName}-details`)
+            if (!targetNode.classList.contains('active')) {
+                console.log('in if');
+                targetNode.classList.add('active')
+                hiddenImage = projectName
+                cursorImage.src = '#'
+            }
+            else {
+                targetNode.classList.remove('active')
+                hiddenImage = null
+            }
+        } else {
+            // If a non-target section is open, close it.
+            const nonTargetNode = document.querySelector(`#${screenshot}-details`)
+            nonTargetNode.classList.remove('active')
+            cursorImage.style.display = 'block'
+        }
     }
-    else projectDetailsNode.classList.remove('active')
+
 })
 
 const screenshots = {
@@ -42,6 +58,6 @@ window.addEventListener('mousemove', event => {
     }
     cursorImage.style.left = `${event.clientX + offsetX}px`
     cursorImage.style.top = `${event.clientY - offsetY}px`
-    cursorImage.src = `screenshots/${screenshots[event.target.id]}`
-
+    if (event.target.id != hiddenImage) cursorImage.src = `screenshots/${screenshots[event.target.id]}`
+    else cursorImage.src = '#'
 })
