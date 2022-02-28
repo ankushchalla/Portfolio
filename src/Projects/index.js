@@ -24,8 +24,8 @@ projects.addEventListener('click', event => {
     for (const screenshot in screenshots) {
         if (screenshot === projectName) {
             const targetNode = document.querySelector(`#${projectName}-details`)
+            // If clicked section is not open, open it. 
             if (!targetNode.classList.contains('active')) {
-                console.log('in if');
                 targetNode.classList.add('active')
                 hiddenImage = projectName
                 cursorImage.src = '#'

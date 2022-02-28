@@ -53,17 +53,17 @@ a.nav-item:hover {
 }
 
 .border {
-    width: fit-content;
     border-top: 5px solid #dfdfef;
-    width: 100%;
+    margin: auto;
+    width: 95vw;
 }
 
 .project-title {
     position: relative;
-    font-size: 7vw;
+    font-size: clamp(40px, 7vw, 140px);
     padding: 7px 0px;
+    padding-bottom: 0px;
     transition: color 300ms;
-
 }
 
 .project-title:hover {
@@ -75,41 +75,42 @@ a.nav-item:hover {
 .cursor-image {
     position: absolute;
     transition: left 300ms ease-out, top 300ms ease-out;
-    width: 40vw;
+    width: min(40vw, 600px);
     z-index: 2;
+    border-radius: 5px;
 }
 
 .project-details {
     max-height: 0;
-    display: flex;
     overflow: hidden;
-    flex-wrap: wrap;
-    justify-content: space-between;
     transition: max-height 300ms ease-out;
 }
 
 .project-description {
     font-size: 20px;
+    width: min(95%, 800px);
     line-height: 1.2;
-    flex: 0 1 450px;
+    margin: 20px 3px;
 }
 
 .links {
-    flex: 0 1 150px;
+    margin-bottom: 20px;
 }
 
 .link {
-    color: #fff1f1;
+    color: #dfdfef;
     text-decoration: none;
-    font-weight: 100;
-    margin-left: 30px;
-    border-bottom: 3px solid rgba(255, 255, 255, 0);
-    transition: border-bottom 400ms ease-out;
-    font-size: 20px;
+    font-weight: 300;
+    padding: 3px 10px;
+    border: 2px solid #dfdfef;
+    border-radius: 5px;
+    font-size: 25px;
+    transition: background-color 300ms;
 }
 
 .link:hover {
-    border-bottom: 2px solid rgba(255, 255, 255, 1);
+    background-color: #dfdfef;
+    color: #036fcc;
 }
 
 .active {
