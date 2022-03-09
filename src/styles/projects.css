@@ -29,7 +29,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .header {
-    margin-left: 6rem;
+    margin-left: 7rem;
     margin-top: 0px;
     margin-bottom: max(100px, 10vw);
 }
@@ -46,7 +46,7 @@ body::-webkit-scrollbar-thumb {
     position: fixed;
     border-right: 3px solid #dfdfef;
     z-index: 5;
-    transition: width 200ms ease;
+    transition: width 400ms ease;
 }
 
 i {
@@ -60,6 +60,7 @@ i {
     align-items: center;
     height: 100%;
 }
+
 
 .nav-item {
     width: 100%;
@@ -84,14 +85,13 @@ i {
     font-size: 1.7rem;
 }
 
-.nav-link svg {
-    min-width: 2rem;
-    margin: 0 1.5rem;
+.link-text {
+    border-bottom: solid 2px rgba(223, 223, 239, 0.0);
+    transition: border-bottom 300ms ease-out;
 }
 
-#projects {
-    position: relative;
-    margin-left: 6rem;
+.link-text:hover {
+    border-bottom: solid 2px var(--text-primary);
 }
 
 .navbar:hover {
@@ -104,6 +104,18 @@ i {
     display: block;
 }
 
+.nav-link svg {
+    min-width: 2rem;
+    margin: 0 1.5rem;
+}
+
+#projects {
+    position: relative;
+    margin-left: 7rem;
+}
+
+
+
 .border {
     border-top: 5px solid #dfdfef;
     margin: auto;
@@ -112,7 +124,7 @@ i {
 
 .project-title {
     position: relative;
-    font-size: clamp(40px, 7vw, 130px);
+    font-size: clamp(40px, 6vw, 130px);
     padding: 7px 0px;
     padding-bottom: 0px;
     transition: color 300ms;
@@ -127,9 +139,9 @@ i {
 .cursor-image {
     position: absolute;
     transition: left 300ms ease-out, top 300ms ease-out;
-    width: min(40vw, 600px);
+    width: min(35vw, 600px);
     z-index: 2;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .project-details {
@@ -168,6 +180,27 @@ i {
 .active {
     max-height: 300px;
     transition: max-height 500ms ease-in;
+}
+
+.moving-letter {
+    display: inline-block;
+    transform: translateX(100px);
+    opacity: 0;
+    transition: transform 300ms, opacity 500ms ease-out;
+}
+
+.enter {
+    transform: translateX(0px);
+    opacity: 1;
+}
+
+i {
+    transform: scale(0);
+    transition: transform 300ms;
+}
+
+.show-icons {
+    transform: scale(1);
 }
 
 

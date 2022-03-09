@@ -61,3 +61,32 @@ window.addEventListener('mousemove', event => {
     if (event.target.id != hiddenImage) cursorImage.src = `screenshots/${screenshots[event.target.id]}`
     else cursorImage.src = '#'
 })
+
+const projectTitles = document.getElementsByClassName('moving-letter')
+let delayedEnterProjects = []
+const delay = 170
+for (let i = 0; i < projectTitles.length; i++) {
+    delayedEnterProjects[i] = new Promise(resolve => {
+        setTimeout(() => {
+            projectTitles[i].classList.add('enter')
+            resolve()
+        }, i * delay)
+    })
+}
+
+const icons = document.getElementsByTagName('i')
+let delayedEnterIcons = []
+const delayIcon = 200
+for (let i = 0; i < icons.length; i++) {
+    delayedEnterIcons[i] = new Promise(resolve => {
+        setTimeout(() => {
+            icons[i].classList.add('show-icons')
+            resolve()
+        }, i * delayIcon)
+    })
+}
+
+window.addEventListener('pageshow', async event => {
+    for (const projectEnter of delayedEnterProjects) await projectEnter
+    for (const iconEnter of delayedEnterIcons) await iconEnter
+})
