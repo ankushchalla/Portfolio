@@ -42,6 +42,10 @@ projects.addEventListener('click', event => {
         }
     }
 
+    // Make sure navbar takes up full height of page.
+    const navbar = document.querySelector('.navbar')
+    navbar.style.height = '100%'
+
 })
 
 const screenshots = {
@@ -62,31 +66,43 @@ window.addEventListener('mousemove', event => {
     else cursorImage.src = '#'
 })
 
+let timer = 0
+
+const borders = document.getElementsByClassName('border')
+async function translateBorders() {
+    for (let i = 0; i < borders.length; i++) {
+        setTimeout(() => {
+            borders[i].classList.add('show-border')
+        })
+    }
+}
+
 const projectTitles = document.getElementsByClassName('moving-letter')
 let delayedEnterProjects = []
-const delay = 170
-for (let i = 0; i < projectTitles.length; i++) {
+let delayProjectTitle = 170
+for (let i = 0; i < projectTitles.length; i++, timer++) {
     delayedEnterProjects[i] = new Promise(resolve => {
         setTimeout(() => {
             projectTitles[i].classList.add('enter')
             resolve()
-        }, i * delay)
+        }, timer * delayProjectTitle)
     })
 }
 
 const icons = document.getElementsByTagName('i')
 let delayedEnterIcons = []
 const delayIcon = 200
-for (let i = 0; i < icons.length; i++) {
+for (let i = 0; i < icons.length; i++, timer++) {
     delayedEnterIcons[i] = new Promise(resolve => {
         setTimeout(() => {
             icons[i].classList.add('show-icons')
             resolve()
-        }, i * delayIcon)
+        }, timer * delayIcon)
     })
 }
 
 window.addEventListener('pageshow', async event => {
+    await translateBorders()
     for (const projectEnter of delayedEnterProjects) await projectEnter
     for (const iconEnter of delayedEnterIcons) await iconEnter
 })

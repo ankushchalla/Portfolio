@@ -28,8 +28,16 @@ body::-webkit-scrollbar-thumb {
     background: var(--text-primary)
 }
 
+.container {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+}
+
+.main {
+    margin-left: 2rem;
+}
+
 .header {
-    margin-left: 7rem;
     margin-top: 0px;
     margin-bottom: max(100px, 10vw);
 }
@@ -41,12 +49,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .navbar {
-    width: 5rem;
     height: 100vh;
-    position: fixed;
     border-right: 3px solid #dfdfef;
     z-index: 5;
-    transition: width 400ms ease;
+    transition: width 2s;
 }
 
 i {
@@ -61,14 +67,19 @@ i {
     height: 100%;
 }
 
+.navbar:hover {
+    width: 20rem;
+    background: rgba(223, 223, 239, .5);
+    backdrop-filter: saturate(180%) blur(10px);
+}
+
+.navbar:hover .link-text {
+    display: block;
+}
 
 .nav-item {
     width: 100%;
     margin-left: 3rem;
-}
-
-.nav-item:last-child {
-    margin-top: auto;
 }
 
 .nav-link {
@@ -83,25 +94,12 @@ i {
     margin-left: 1rem;
     color: var(--text-primary);
     font-size: 1.7rem;
-}
-
-.link-text {
     border-bottom: solid 2px rgba(223, 223, 239, 0.0);
     transition: border-bottom 300ms ease-out;
 }
 
 .link-text:hover {
     border-bottom: solid 2px var(--text-primary);
-}
-
-.navbar:hover {
-    width: 20rem;
-    background: rgba(223, 223, 239, .5);
-    backdrop-filter: saturate(180%) blur(10px);
-}
-
-.navbar:hover .link-text {
-    display: block;
 }
 
 .nav-link svg {
@@ -111,29 +109,29 @@ i {
 
 #projects {
     position: relative;
-    margin-left: 7rem;
+    /* margin-left: 7rem; */
 }
-
 
 
 .border {
     border-top: 5px solid #dfdfef;
-    margin: auto;
-    width: 95vw;
+    z-index: 1;
 }
 
 .project-title {
+    width: 100%;
     position: relative;
     font-size: clamp(40px, 6vw, 130px);
     padding: 7px 0px;
     padding-bottom: 0px;
     transition: color 300ms;
+    z-index: 3;
 }
 
 .project-title:hover {
     color: rgba(5, 5, 41, 0.6);
     cursor: pointer;
-    z-index: 3;
+    
 }
 
 .cursor-image {
@@ -201,6 +199,27 @@ i {
 
 .show-icons {
     transform: scale(1);
+}
+
+.show-border {
+    transform: translate(0px);
+}
+
+@media only screen and (max-width: 650px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navbar {
+        width: 100vw;
+        height: fit-content;
+        border: none
+    }
+
+    .navbar-nav {
+        flex-direction: row;        
+    }
 }
 
 
