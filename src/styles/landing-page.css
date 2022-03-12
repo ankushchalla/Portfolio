@@ -33,13 +33,13 @@ body
 
 #name {
     font-weight: 100;
-    font-size: 10vw;
+    font-size: max(90px, 10vw);
 }
 
 #nav {
     display: flex;
     width: 100%;
-    font-size: min(3vw, 60px);
+    font-size: clamp(30px, 3vw, 60px);
     justify-content: flex-end;
 }
 
@@ -56,3 +56,24 @@ a.nav-item:hover {
     border-bottom: 2px solid rgba(255, 255, 255, 1);
 }
 
+@media only screen and (max-width: 650px) {
+    #landing-page {
+        justify-content: flex-start;
+    }
+
+    #header {
+        width: 95vw;
+        height: 100%;
+    }
+
+    #nav {
+        flex-direction: column;
+        margin-left: 10px;
+        margin-top: 30px;
+    }
+
+    a.nav-item {
+        width: 100%;
+        margin-left: 0px;
+    }
+}

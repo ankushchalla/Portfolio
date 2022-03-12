@@ -141,10 +141,12 @@ let transitionToPage = false
 const projectsButton = document.querySelector('#projects')
 let newPage = null
 projectsButton.addEventListener('click', function (e) {
-    e.preventDefault()
-    landingPage.style.opacity = 0
-    transitionToPage = true
-    newPage = this.href
+    if (screen.width > 650) {
+        e.preventDefault()
+        landingPage.style.opacity = 0
+        transitionToPage = true
+        newPage = this.href
+    }
 })
 
 // Controls
@@ -201,5 +203,7 @@ window.addEventListener('pageshow', event => {
     if (event.persisted) window.location.reload()
 })
 
-tick()
+// Quick optimization since animation runs slow on phones. 
+if (screen.width > 650) tick()
+else renderer.render(scene, camera)
 
