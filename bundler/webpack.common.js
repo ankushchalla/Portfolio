@@ -6,7 +6,8 @@ const path = require('path')
 module.exports = {
     entry: {
         landingPage: path.resolve(__dirname, '../src/script.js'),
-        projectsPage: path.resolve(__dirname, '../src/Projects/index.js')
+        projectsPage: path.resolve(__dirname, '../src/Projects/index.js'),
+        aboutPage: path.resolve(__dirname, '../src/About/index.js'),
     },
     output:
     {
@@ -31,6 +32,16 @@ module.exports = {
             chunks: ['projectsPage'],
             filename: 'projects.html',
             template: path.resolve(__dirname, '../src/Projects/projects.html'),
+        }),
+        new HtmlWebpackPlugin({
+            chunks: ['aboutPage'],
+            filename: 'about.html',
+            template: path.resolve(__dirname, '../src/About/about.html'),
+        }),
+        new HtmlWebpackPlugin({
+            chunks: ['contactPage'],
+            filename: 'contact.html',
+            template: path.resolve(__dirname, '../src/Contact/contact.html'),
         }),
         new MiniCSSExtractPlugin()
     ],
