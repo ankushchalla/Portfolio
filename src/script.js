@@ -170,7 +170,7 @@ renderer.setClearColor(new THREE.Color('#0054c4'))
  * Animate
  */
 let clock = new THREE.Clock()
-let decrement = .01
+let decrement = .03
 const tick = () => {
     const elapsedTime = clock.getElapsedTime()
 
