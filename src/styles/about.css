@@ -51,7 +51,8 @@ body::-webkit-scrollbar-thumb {
     height: 100vh;
     border-right: 3px solid #dfdfef;
     z-index: 5;
-    transition: width 2s;
+    width: 5rem;
+    transition: width 300ms;
 }
 
 i {
